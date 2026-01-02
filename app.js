@@ -13,7 +13,7 @@ const PORT = process.env.PORT;
 app.use(express.json());
 app.use(express.urlencoded({ extended:false }));
 app.use(cookieParser())
-app.use(errorMiddleware);
+
 
 
 app.use("/api/v1/auth",authRouter);
@@ -23,6 +23,8 @@ app.use("/api/v1/subscriptions",subRouter);
 app.get('/',(req,res)=>{
     res.send({hello:"world"});
 });
+
+app.use(errorMiddleware);
 
 app.listen(PORT,async ()=>{
     console.log(`Server is running on ${process.env.NODE_ENV} http://localhost:${PORT}`);
